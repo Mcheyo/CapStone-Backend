@@ -1,7 +1,7 @@
 class SkillsController < ApplicationController
     def index 
         skills = Skill.all 
-        render json: skills
+        render json: skills.to_json({only: [:name, :id]})
     end 
 
     def show 

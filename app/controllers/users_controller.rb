@@ -9,4 +9,19 @@ class UsersController < ApplicationController
         render json: user.to_json(include:{skills: {only: ["name"]}, proposals:{only:["idea"]}})
 
     end 
+
+    def create 
+        
+        user = User.create(name:params["name"], username:params["username"], password:params["password"],bio:params["bio"] )
+        if user.valid? 
+            
+        user.update(skill_ids: params["skill"]) 
+        render json: user.to_json(include:{skills:{only: ["name"]}})
+        else 
+          render  json: {
+                message:   user.errors.full_messages
+              }
+     
+        end 
+    end 
 end
