@@ -6,26 +6,42 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'byebug'
-skills = [
+Skill.destroy_all 
+platforms = [
+    "Website", 
+    "Mobile App", 
+    "Native App"
+]
+platforms.each do |platform|
+    
+
+    Skill.create(name: platform, category:"Platform")
+end
+
+languages=[
     "JavaScript", 
     "Ruby", 
     "Ruby on Rails", 
     "React", 
-    "Redux", 
-    "Website", 
-    "Mobile App", 
-    "Native App", 
+    "Redux"
+]
+
+languages.each do |language|
+    Skill.find_or_create_by(name: language, category:"Language")
+end 
+categories = [
     "Health", 
     "Social", 
     "Finance"
-
 ]
-skills.each do |skill|
 
-    Skill.find_or_create_by(name: skill)
-end
+categories.each do |catergory|
+    Skill.find_or_create_by(name: catergory, category:"Field")
+end 
 
-u1 = User.find_or_create_by(name: "Tester2", bio: "Seeding data")
-u2 = User.find_or_create_by(name:"Tester3", bio: "Seeding data")
-developer_test = UserSkill.find_or_create_by(skill_id: 2, developer_id: u1 )
-client_test = Proposal.find_or_create_by(client: u2, idea: "Lets make googlessss")
+
+
+# u1 = User.find_or_create_by(name: "Tester2", bio: "Seeding data")
+# u2 = User.find_or_create_by(name:"Tester3", bio: "Seeding data")
+# developer_test = UserSkill.find_or_create_by(skill_id: 2, developer_id: u1 )
+# client_test = Proposal.find_or_create_by(client: u2, idea: "Lets make googlessss")
