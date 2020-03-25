@@ -4,8 +4,8 @@ class User < ApplicationRecord
 
     has_many :proposed_projects, :foreign_key => 'client_id', class_name: "Project"
     has_many :working_projects, :foreign_key =>'developer_id', class_name: "Project"
-    has_many :proposals, :foreign_key =>'client_id', class_name: "Proposal"
-    # has_many :proposals, :foreign_key =>'developer_id'
+    has_many :proposals_sent, :foreign_key =>'client_id', class_name: "Proposal"
+    has_many :proposals_received, :foreign_key =>'developer_id', class_name:"Proposal"
     has_secure_password
     validates :username, uniqueness: {case_sensitive: false }
 

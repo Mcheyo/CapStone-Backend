@@ -13,20 +13,11 @@ class ProposalsController < ApplicationController
 
     def create 
         
-        proposal = Proposal.create(idea: params["idea"], client_id:params["client"], status:"Pending")
-       suggested_users =  User.all.select{|user| user.skill_ids & params["skills"] == params["skills"]} 
-       byebug 
-         if proposal.valid?
-        render json: { 
-            proposal: proposal, 
-            developers: suggested_users
-        } 
-         else 
-                        
-            render json: {
-                        message: proposal.errors
-                        }
-         end 
-        
+       proposal = Proposal.create(client_id: params["client_id"], developer_id:params["developer"], idea:params["idea"], status:"Pending", project_id:params["project"])
+       if proposal.valid?
+        render json: proposal
+       else 
+        render json: proposal.errors 
+       end 
     end 
 end

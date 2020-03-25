@@ -19,7 +19,7 @@ class ProjectsController < ApplicationController
     #    suggested_users =  User.all.select{|user| user.skill_ids & params["skills"] == params["skills"]} 
        
          if project.valid?
-            byebug 
+            
             project.update(skill_ids: params["skills"]) 
 
         render json: { 
