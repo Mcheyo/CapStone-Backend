@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     def show
         user = User.find_by(id: params[:id])
         
-        render json: user.to_json(include:{skills: {only: ["name"]}, proposals_received:{only:[:client_id, :idea, :developer_id]}})
+        render json: user.to_json(:include => [:skills, :proposals_received, :proposals_sent])
     end 
 
     def create 
