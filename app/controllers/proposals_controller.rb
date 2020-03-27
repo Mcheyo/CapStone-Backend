@@ -11,6 +11,16 @@ class ProposalsController < ApplicationController
 
     end 
 
+    def update 
+        
+        proposal = Proposal.find_by(id: params["proposal"]["id"])
+        if params["status"] == "Accept"
+            proposal.update(status:"Accepted")
+        
+        else 
+            proposal.update(status:"Rejected")
+        end 
+    end
     def create 
         
        proposal = Proposal.create(client_id: params["client_id"], developer_id:params["developer"], idea:params["idea"], status:"Pending", project_id:params["project"])
